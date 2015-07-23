@@ -1,7 +1,8 @@
 FROM ubuntu:14.04
 MAINTAINER Dan Davison <dandavison7@gmail.com>
 
-RUN apt-get install -y apache2-utils
+RUN apt-get update
+RUN apt-get install -y apache2-utils python python-pip
 RUN pip install pypiserver passlib
 RUN mkdir -p /srv/pypiserver
 WORKDIR /srv/pypiserver

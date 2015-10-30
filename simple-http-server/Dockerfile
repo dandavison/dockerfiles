@@ -1,6 +1,8 @@
-FROM ubuntu
-RUN apt-get install -y python
-RUN mkdir -p /srv/
-ADD . /srv/
-EXPOSE 9876
-CMD ["python", "/srv/simple-http-server.py", "", "9876"]
+FROM python:2.7
+ENV APP_DIR /app
+RUN mkdir $APP_DIR
+WORKDIR $APP_DIR
+COPY . ./
+WORKDIR /srv
+EXPOSE 80
+CMD ["python", "/app/simple-http-server.py", "0.0.0.0", "80"]
